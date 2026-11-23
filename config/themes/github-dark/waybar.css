@@ -1,4 +1,4 @@
-*
+* {
     font-family: "JetBrainsMono Nerd Font";
     font-size: 12px;
     font-weight: 600;
@@ -178,8 +178,7 @@ window#waybar.focus #custom-microphone {
 
 #clock {
     color: #e6edf3;
-    min-width: 15;
-    justify: center;
+    min-width: 15px;
 }
 
 #tray {
