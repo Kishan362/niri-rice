@@ -1,0 +1,238 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "spacing": 4,
+  "margin-top": 0,
+  "margin-left": 18,
+  "margin-right": 18,
+
+  "exclusive": true,
+  "passthrough": false,
+  "reload_style_on_change": true,
+
+  "modules-left": [
+    "custom/launcher",
+    "niri/workspaces",
+    "niri/window"
+  ],
+
+  "modules-center": [
+    "mpris"
+  ],
+
+  "modules-right": [
+    "custom/nightlight",
+    "temperature",
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "custom/microphone",
+    "backlight",
+    "custom/caffeine",
+    "battery",
+    "clock",
+    "tray",
+    "custom/power"
+  ],
+
+  "custom/launcher": {
+    "format": "󰣇",
+    "tooltip": false,
+    "on-click": "rofi -show drun -show-icons"
+  },
+
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "urgent": ""
+    },
+    "disable-scroll": false,
+    "all-outputs": true,
+    "show-special": true
+  },
+
+  "niri/window": {
+    "format": "󰣆 {}",
+    "max-length": 30,
+    "separate-outputs": true,
+    "rewrite": {
+      "": "Desktop"
+    }
+  },
+
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "󰏤 {dynamic}",
+    "format-stopped": "󰓛 No music",
+    "player-icons": {
+      "default": "󰎆",
+      "spotify": "",
+      "firefox": "󰈹",
+      "mpv": "󰐹"
+    },
+    "dynamic-len": 28,
+    "dynamic-order": [
+      "artist",
+      "title"
+    ],
+    "interval": 2,
+    "tooltip-format": "{player}\n{artist} - {title}",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous"
+  },
+
+  "custom/nightlight": {
+    "exec": "~/.config/waybar/scripts/nightlight.sh",
+    "return-type": "json",
+    "interval": 3,
+    "format": "{}",
+    "on-click": "~/.config/waybar/scripts/nightlight.sh toggle",
+    "tooltip": true
+  },
+
+  "temperature": {
+    "interval": 3,
+    "thermal-zone": 0,
+    "critical-threshold": 85,
+    "format": "󰔏 {temperatureC}°C",
+    "format-critical": "󰸁 {temperatureC}°C",
+    "tooltip-format": "CPU temperature: {temperatureC}°C"
+  },
+
+  "cpu": {
+    "interval": 3,
+    "format": "󰻠 {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "foot -e btop"
+  },
+
+  "memory": {
+    "interval": 3,
+    "format": "󰍛 {percentage}%",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Muted",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋋",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "on-click-right": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "tooltip-format": "Audio volume: {volume}%"
+  },
+
+  "custom/microphone": {
+    "exec": "~/.config/waybar/scripts/mic.sh",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{}",
+    "on-click": "~/.config/waybar/scripts/mic.sh toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip": true
+  },
+
+  "backlight": {
+    "format": "󰃠 {percent}%",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "min-brightness": 10,
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "~/.config/waybar/scripts/brightness-down.sh",
+    "tooltip-format": "Brightness: {percent}%"
+  },
+
+  "custom/caffeine": {
+    "exec": "~/.config/waybar/scripts/caffeine.sh",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{}",
+    "on-click": "~/.config/waybar/scripts/caffeine.sh toggle",
+    "tooltip": true
+  },
+
+  "battery": {
+    "interval": 15,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-full": "󰁹 {capacity}%",
+    "format-time": "{H}h {M}m",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{capacity}% · {time} remaining",
+    "tooltip-format-charging": "{capacity}% · {time} until full",
+    "tooltip-format-plugged": "{capacity}% · Plugged in",
+    "tooltip-format-full": "100% · Full"
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "󰥔 {:%I:%M %p}",
+    "format-alt": "󰃭 {:%d-%m-%Y}",
+    "min-length": 15,
+    "justify": "center",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "months": "<span color='#ff2a55'><b>{}</b></span>",
+        "days": "<span color='#e5e2e8'>{}</span>",
+        "weeks": "<span color='#9e98a6'><b>W{}</b></span>",
+        "weekdays": "<span color='#ff4d6d'><b>{}</b></span>",
+        "today": "<span color='#ffffff' background='#e11d48'><b>{}</b></span>"
+      }
+    }
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8,
+    "show-passive-items": true
+  },
+
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip": false,
+    "on-click": "wlogout"
+  }
+}

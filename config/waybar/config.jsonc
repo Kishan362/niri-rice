@@ -195,11 +195,11 @@
       "calendar": {
         "mode": "month",
         "format": {
-          "months": "<span color='#83c092'><b>{}</b></span>",
-          "days": "<span color='#d3c6aa'>{}</span>",
-          "weeks": "<span color='#859289'><b>W{}</b></span>",
-          "weekdays": "<span color='#a7c080'><b>{}</b></span>",
-          "today": "<span color='#2d353b' background='#a7c080'><b>{}</b></span>"
+          "months": "<span color='#f78166'><b>{}</b></span>",
+          "days": "<span color='#e6edf3'>{}</span>",
+          "weeks": "<span color='#8b949e'><b>W{}</b></span>",
+          "weekdays": "<span color='#58a6ff'><b>{}</b></span>",
+          "today": "<span color='#0d1117' background='#58a6ff'><b>{}</b></span>"
         }
       }
     },
@@ -264,11 +264,11 @@
       "calendar": {
         "mode": "month",
         "format": {
-          "months": "<span color='#83c092'><b>{}</b></span>",
-          "days": "<span color='#d3c6aa'>{}</span>",
-          "weeks": "<span color='#859289'><b>W{}</b></span>",
-          "weekdays": "<span color='#a7c080'><b>{}</b></span>",
-          "today": "<span color='#2d353b' background='#a7c080'><b>{}</b></span>"
+          "months": "<span color='#f78166'><b>{}</b></span>",
+          "days": "<span color='#e6edf3'>{}</span>",
+          "weeks": "<span color='#8b949e'><b>W{}</b></span>",
+          "weekdays": "<span color='#58a6ff'><b>{}</b></span>",
+          "today": "<span color='#0d1117' background='#58a6ff'><b>{}</b></span>"
         }
       }
     },
