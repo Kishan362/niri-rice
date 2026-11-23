@@ -1,4 +1,4 @@
-*
+* {
     bg:          #0a0e14f2;
     bg-alt:      #131721;
     bg-selected: #1f2430;
