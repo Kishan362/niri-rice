@@ -249,9 +249,7 @@
     "start_hidden": true,
     "modules-left": [],
     "modules-center": [
-      "clock",
-      "tray",
-      "custom/microphone"
+      "niri/workspaces"
     ],
     "modules-right": [],
     "clock": {
@@ -285,6 +283,12 @@
       "on-click": "~/.config/waybar/scripts/mic.sh toggle",
       "on-click-right": "pavucontrol",
       "tooltip": true
+    },
+    "niri/workspaces": {
+      "format": "{value}",
+      "disable-scroll": false,
+      "all-outputs": true,
+      "show-special": true
     }
   }
 ]

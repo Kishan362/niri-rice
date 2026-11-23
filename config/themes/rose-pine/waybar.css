@@ -25,12 +25,44 @@ window#waybar > box {
 
 
 
+
+
 window#waybar.focus > box {
     background: transparent;
     border: none;
     border-radius: 0;
     padding: 0;
     box-shadow: none;
+}
+
+window#waybar.focus .modules-center {
+    background: #000000;
+    border: none;
+    border-radius: 0 0 18px 18px;
+    padding: 2px 16px 4px 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+}
+
+window#waybar.focus #workspaces {
+    background: transparent;
+    margin: 0;
+    padding: 0 4px;
+    border-radius: 0;
+}
+
+window#waybar.focus #workspaces button {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 0 8px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+window#waybar.focus #workspaces button.focused {
+    color: #ffffff;
+    background: transparent;
 }
 
 window#waybar.focus .modules-center {
