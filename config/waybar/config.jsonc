@@ -247,12 +247,12 @@
     "passthrough": false,
     "reload_style_on_change": true,
     "start_hidden": true,
-    "modules-left": [
+    "modules-left": [],
+    "modules-center": [
       "clock",
       "tray",
       "custom/microphone"
     ],
-    "modules-center": [],
     "modules-right": [],
     "clock": {
       "interval": 1,

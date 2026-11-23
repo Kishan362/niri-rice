@@ -23,15 +23,17 @@ window#waybar > box {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
 }
 
+
+
 window#waybar.focus > box {
     background: transparent;
     border: none;
     border-radius: 0;
-    padding: 0 18px;
+    padding: 0;
     box-shadow: none;
 }
 
-window#waybar.focus .modules-left {
+window#waybar.focus .modules-center {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.52), rgba(245, 245, 247, 0.30));
     border-left: 1px solid rgba(255, 255, 255, 0.30);
     border-right: 1px solid rgba(255, 255, 255, 0.30);
@@ -49,6 +51,11 @@ window#waybar.focus #custom-microphone {
     margin: 0;
     padding: 0 12px;
     border-radius: 0;
+}
+
+window#waybar.focus #tray,
+window#waybar.focus #custom-microphone {
+    border-left: 1px solid rgba(128, 128, 128, 0.35);
 }
 
 window#waybar.focus #tray,
