@@ -175,103 +175,22 @@ tooltip label {
 }
 
 #custom-caffeine {
-    color: #e5e9f0;
+    color: #88c0d0;
 }
 
-#custom-caffeine.activated {
-    color: #8fbcbb;
-    background: rgba(48, 58, 71, 0.65);
+#custom-caffeine.active {
+    color: #88c0d0;
+    background: rgba(136, 192, 208, 0.65);
 }
 
-#battery {
+tooltip {
+    background: #3b4252;
     color: #d8dee9;
+    border: 1px solid #88c0d066;
+    border-radius: 10px;
 }
 
-#battery.charging {
-    color: #8fbcbb;
-}
-
-#battery.warning {
-    color: #ebcb8b;
-}
-
-#battery.critical:not(.charging) {
-    color: #eceff4;
-    background: #7a2f36;
-    animation: blink 1s linear infinite;
-}
-
-@keyframes blink {
-    to {
-        background: #88c0d0;
-        color: #eceff4;
-    }
-}
-
-#clock {
+tooltip label {
     color: #d8dee9;
-    background: rgba(48, 58, 71, 0.65);
-    border: 1px solid rgba(136, 192, 208, 0.35);
-    padding: 0 13px;
-    margin: 3px 3px;
-    min-width: 118px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-#tray {
-    background: rgba(59, 66, 82, 0.55);
-    padding: 0 9px;
-    margin: 3px 2px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background: rgba(48, 58, 71, 0.65);
-    border-radius: 6px;
-}
-
-#custom-wallpaper {
-    color: #8fbcbb;
-    background: rgba(48, 58, 71, 0.65);
-    padding: 0 10px;
-}
-
-#custom-theme {
-    color: #8fbcbb;
-    background: rgba(48, 58, 71, 0.65);
-    padding: 0 10px;
-}
-
-#custom-power {
-    color: #8fbcbb;
-    background: rgba(48, 58, 71, 0.65);
-    padding: 0 12px;
-}
-
-#custom-power:hover,
-#custom-launcher:hover,
-#custom-wallpaper:hover,
-#custom-theme:hover {
-    background: #5e81ac;
-    color: #eceff4;
-}
-
-#temperature:hover,
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#custom-microphone:hover,
-#backlight:hover,
-#custom-nightlight:hover,
-#custom-caffeine:hover,
-#battery:hover,
-#clock:hover,
-#mpris:hover {
-    background: rgba(58, 68, 84, 0.8);
-    color: #d8dee9;
+    padding: 5px;
 }

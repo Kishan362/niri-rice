@@ -175,170 +175,22 @@ tooltip label {
 }
 
 #custom-caffeine {
-    color: #48484a;
-}
-
-#custom-caffeine.activated {
-    color: #0a84ff;
-    background: rgba(229, 240, 255, 0.45);
-}
-
-#battery {
-    color: #1d1d1f;
-}
-
-#battery.charging {
     color: #0a84ff;
 }
 
-#battery.warning {
-    color: #ff9f0a;
-}
-
-#battery.critical:not(.charging) {
-    color: #ffffff;
-    background: #d70015;
-    animation: blink 1s linear infinite;
-}
-
-@keyframes blink {
-    to {
-        background: #007aff;
-        color: #ffffff;
-    }
-}
-
-#clock {
-    color: #1d1d1f;
-    background: rgba(229, 240, 255, 0.45);
-    border: 1px solid rgba(0, 122, 255, 0.35);
-    padding: 0 13px;
-    margin: 3px 3px;
-    min-width: 118px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-#tray {
-    background: rgba(255, 255, 255, 0.35);
-    padding: 0 9px;
-    margin: 3px 2px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background: rgba(229, 240, 255, 0.45);
-    border-radius: 6px;
-}
-
-#custom-wallpaper {
+#custom-caffeine.active {
     color: #0a84ff;
-    background: rgba(229, 240, 255, 0.45);
-    padding: 0 10px;
+    background: rgba(10, 132, 255, 0.45);
 }
 
-#custom-theme {
-    color: #0a84ff;
-    background: rgba(229, 240, 255, 0.45);
-    padding: 0 10px;
-}
-
-#custom-power {
-    color: #0a84ff;
-    background: rgba(229, 240, 255, 0.45);
-    padding: 0 12px;
-}
-
-#custom-power:hover,
-#custom-launcher:hover,
-#custom-wallpaper:hover,
-#custom-theme:hover {
-    background: #0066d6;
-    color: #ffffff;
-}
-
-#temperature:hover,
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#custom-microphone:hover,
-#backlight:hover,
-#custom-nightlight:hover,
-#custom-caffeine:hover,
-#battery:hover,
-#clock:hover,
-#mpris:hover {
-    background: rgba(220, 233, 251, 0.65);
+tooltip {
+    background: #e8e8ed;
     color: #1d1d1f;
+    border: 1px solid #0a84ff66;
+    border-radius: 10px;
 }
-#custom-launcher,
-#workspaces,
-#window,
-#mpris,
-#temperature,
-#cpu,
-#memory,
-#pulseaudio,
-#custom-microphone,
-#backlight,
-#custom-nightlight,
-#custom-caffeine,
-#battery,
-#clock,
-#tray,
-#custom-wallpaper,
-#custom-theme,
-#custom-power {
-    background: transparent;
-    border: none;
-    box-shadow: none;
+
+tooltip label {
     color: #1d1d1f;
-}
-
-#custom-launcher,
-#custom-wallpaper,
-#custom-theme,
-#custom-power {
-    color: #007aff;
-}
-
-#clock {
-    min-width: 0;
-    padding: 0 10px;
-}
-
-#mpris {
-    padding: 0 10px;
-}
-
-#workspaces button:hover,
-#custom-launcher:hover,
-#custom-wallpaper:hover,
-#custom-theme:hover,
-#custom-power:hover,
-#temperature:hover,
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#custom-microphone:hover,
-#backlight:hover,
-#custom-nightlight:hover,
-#custom-caffeine:hover,
-#battery:hover,
-#clock:hover,
-#mpris:hover {
-    background: rgba(255, 255, 255, 0.22);
-    color: #1d1d1f;
-}
-
-#custom-power:hover,
-#custom-launcher:hover,
-#custom-wallpaper:hover,
-#custom-theme:hover {
-    background: rgba(0, 122, 255, 0.14);
-    color: #0066d6;
+    padding: 5px;
 }

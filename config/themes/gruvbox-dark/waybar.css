@@ -175,103 +175,22 @@ tooltip label {
 }
 
 #custom-caffeine {
-    color: #d5c4a1;
-}
-
-#custom-caffeine.activated {
     color: #fabd2f;
-    background: rgba(58, 42, 26, 0.65);
 }
 
-#battery {
+#custom-caffeine.active {
+    color: #fabd2f;
+    background: rgba(250, 189, 47, 0.65);
+}
+
+tooltip {
+    background: #3c3836;
     color: #ebdbb2;
+    border: 1px solid #fabd2f66;
+    border-radius: 10px;
 }
 
-#battery.charging {
-    color: #fabd2f;
-}
-
-#battery.warning {
-    color: #fabd2f;
-}
-
-#battery.critical:not(.charging) {
-    color: #ffffff;
-    background: #9d0006;
-    animation: blink 1s linear infinite;
-}
-
-@keyframes blink {
-    to {
-        background: #fe8019;
-        color: #ffffff;
-    }
-}
-
-#clock {
+tooltip label {
     color: #ebdbb2;
-    background: rgba(58, 42, 26, 0.65);
-    border: 1px solid rgba(254, 128, 25, 0.35);
-    padding: 0 13px;
-    margin: 3px 3px;
-    min-width: 118px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-#tray {
-    background: rgba(60, 56, 54, 0.55);
-    padding: 0 9px;
-    margin: 3px 2px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background: rgba(58, 42, 26, 0.65);
-    border-radius: 6px;
-}
-
-#custom-wallpaper {
-    color: #fabd2f;
-    background: rgba(58, 42, 26, 0.65);
-    padding: 0 10px;
-}
-
-#custom-theme {
-    color: #fabd2f;
-    background: rgba(58, 42, 26, 0.65);
-    padding: 0 10px;
-}
-
-#custom-power {
-    color: #fabd2f;
-    background: rgba(58, 42, 26, 0.65);
-    padding: 0 12px;
-}
-
-#custom-power:hover,
-#custom-launcher:hover,
-#custom-wallpaper:hover,
-#custom-theme:hover {
-    background: #af3a03;
-    color: #ffffff;
-}
-
-#temperature:hover,
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#custom-microphone:hover,
-#backlight:hover,
-#custom-nightlight:hover,
-#custom-caffeine:hover,
-#battery:hover,
-#clock:hover,
-#mpris:hover {
-    background: rgba(69, 52, 42, 0.8);
-    color: #ebdbb2;
+    padding: 5px;
 }

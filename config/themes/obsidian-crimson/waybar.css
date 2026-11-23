@@ -175,103 +175,22 @@ tooltip label {
 }
 
 #custom-caffeine {
-    color: #dcd8e0;
+    color: #e11d48;
 }
 
-#custom-caffeine.activated {
-    color: #ff2a55;
-    background: rgba(40, 19, 26, 0.65);
+#custom-caffeine.active {
+    color: #e11d48;
+    background: rgba(225, 29, 72, 0.65);
 }
 
-#battery {
+tooltip {
+    background: #232026;
     color: #f3f1f5;
+    border: 1px solid #e11d4866;
+    border-radius: 10px;
 }
 
-#battery.charging {
-    color: #ff2a55;
-}
-
-#battery.warning {
-    color: #fbbf24;
-}
-
-#battery.critical:not(.charging) {
-    color: #ffffff;
-    background: #9f1239;
-    animation: blink 1s linear infinite;
-}
-
-@keyframes blink {
-    to {
-        background: #e11d48;
-        color: #ffffff;
-    }
-}
-
-#clock {
+tooltip label {
     color: #f3f1f5;
-    background: rgba(40, 19, 26, 0.65);
-    border: 1px solid rgba(225, 29, 72, 0.35);
-    padding: 0 13px;
-    margin: 3px 3px;
-    min-width: 118px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-#tray {
-    background: rgba(21, 19, 25, 0.55);
-    padding: 0 9px;
-    margin: 3px 2px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background: rgba(40, 19, 26, 0.65);
-    border-radius: 6px;
-}
-
-#custom-wallpaper {
-    color: #ff2a55;
-    background: rgba(40, 19, 26, 0.65);
-    padding: 0 10px;
-}
-
-#custom-theme {
-    color: #ff2a55;
-    background: rgba(40, 19, 26, 0.65);
-    padding: 0 10px;
-}
-
-#custom-power {
-    color: #ff2a55;
-    background: rgba(40, 19, 26, 0.65);
-    padding: 0 12px;
-}
-
-#custom-power:hover,
-#custom-launcher:hover,
-#custom-wallpaper:hover,
-#custom-theme:hover {
-    background: #b91c3c;
-    color: #ffffff;
-}
-
-#temperature:hover,
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#custom-microphone:hover,
-#backlight:hover,
-#custom-nightlight:hover,
-#custom-caffeine:hover,
-#battery:hover,
-#clock:hover,
-#mpris:hover {
-    background: rgba(40, 21, 29, 0.8);
-    color: #f3f1f5;
+    padding: 5px;
 }
