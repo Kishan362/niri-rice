@@ -27,6 +27,8 @@ window#waybar > box {
 
 
 
+
+
 window#waybar.focus > box {
     background: transparent;
     border: none;
@@ -63,6 +65,26 @@ window#waybar.focus #workspaces button {
 window#waybar.focus #workspaces button.focused {
     color: #ffffff;
     background: transparent;
+}
+
+window#waybar.focus #tray {
+    background: transparent;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 0;
+}
+
+window#waybar.focus #custom-microphone {
+    background: transparent;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 0;
+    color: #ffffff;
+}
+
+window#waybar.focus #tray,
+window#waybar.focus #custom-microphone {
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 window#waybar.focus .modules-center {

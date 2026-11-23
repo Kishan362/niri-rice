@@ -249,7 +249,9 @@
     "start_hidden": true,
     "modules-left": [],
     "modules-center": [
-      "niri/workspaces"
+      "niri/workspaces",
+      "tray",
+      "custom/microphone"
     ],
     "modules-right": [],
     "clock": {

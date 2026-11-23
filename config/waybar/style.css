@@ -61,6 +61,26 @@ window#waybar.focus #workspaces button.focused {
     background: transparent;
 }
 
+window#waybar.focus #tray {
+    background: transparent;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 0;
+}
+
+window#waybar.focus #custom-microphone {
+    background: transparent;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 0;
+    color: #ffffff;
+}
+
+window#waybar.focus #tray,
+window#waybar.focus #custom-microphone {
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
 tooltip {
     background: #232a2e;
     color: #d3c6aa;
