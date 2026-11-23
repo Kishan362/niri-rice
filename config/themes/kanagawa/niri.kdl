@@ -1,0 +1,29 @@
+layout {
+    focus-ring {
+        width 2
+        active-gradient from="#7fb4ca" to="#4f6d9e" angle=135
+        inactive-color "#363646"
+    }
+
+    border {
+        off
+        width 2
+        active-color "#7e9cd8"
+        inactive-color "#363646"
+        urgent-color "#e46876"
+    }
+
+    tab-indicator {
+        active-color "#7e9cd8"
+        inactive-color "#363646"
+        urgent-color "#e46876"
+    }
+
+    insert-hint {
+        gradient from="#7fb4ca80" to="#4f6d9e80" angle=135
+    }
+}
+
+overview {
+    backdrop-color "#16161d"
+}

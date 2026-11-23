@@ -1,0 +1,261 @@
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #c0caf5;
+}
+
+window#waybar > box {
+    background: rgba(26, 27, 38, 0.35);
+    border-left: 1px solid rgba(122, 162, 247, 0.38);
+    border-right: 1px solid rgba(122, 162, 247, 0.38);
+    border-bottom: 1px solid rgba(122, 162, 247, 0.45);
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: 2px 12px 4px 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
+}
+
+tooltip {
+    background: #16161e;
+    color: #c0caf5;
+    border: 1px solid #7aa2f7;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: #c0caf5;
+    padding: 5px;
+}
+
+#custom-launcher,
+#workspaces,
+#window,
+#mpris,
+#temperature,
+#cpu,
+#memory,
+#pulseaudio,
+#custom-microphone,
+#backlight,
+#custom-nightlight,
+#custom-caffeine,
+#battery,
+#clock,
+#tray,
+#custom-wallpaper,
+#custom-theme,
+#custom-power {
+    padding: 0 8px;
+    margin: 3px 2px;
+    border-radius: 9px;
+    background: rgba(41, 46, 66, 0.55);
+    color: #a9b1d6;
+    transition: all 180ms ease;
+}
+
+#custom-launcher {
+    color: #bb9af7;
+    font-size: 17px;
+    padding: 0 11px;
+    background: rgba(36, 40, 59, 0.65);
+}
+
+#workspaces {
+    background: rgba(41, 46, 66, 0.55);
+    padding: 0 4px;
+}
+
+#workspaces button {
+    color: #545c7e;
+    padding: 0 7px;
+    margin: 2px;
+    border-radius: 7px;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    background: #3d59a1;
+    box-shadow: 0 0 8px rgba(122, 162, 247, 0.45);
+}
+
+#workspaces button:hover {
+    background: rgba(47, 53, 73, 0.8);
+    color: #bb9af7;
+}
+
+#window {
+    color: #a9b1d6;
+}
+
+#mpris {
+    color: #c0caf5;
+    background: rgba(36, 40, 59, 0.65);
+    border: 1px solid rgba(122, 162, 247, 0.25);
+    padding: 0 12px;
+}
+
+#mpris.paused {
+    color: #565f89;
+}
+
+#temperature {
+    color: #ff9e64;
+}
+
+#temperature.critical {
+    color: #ffffff;
+    background: #7a2e3f;
+}
+
+#cpu {
+    color: #c0caf5;
+}
+
+#memory {
+    color: #a9b1d6;
+}
+
+#memory.warning,
+#cpu.warning {
+    color: #e0af68;
+}
+
+#memory.critical,
+#cpu.critical {
+    color: #f7768e;
+}
+
+#pulseaudio {
+    color: #c0caf5;
+}
+
+#pulseaudio.muted {
+    color: #545c7e;
+}
+
+#custom-microphone {
+    color: #a9b1d6;
+}
+
+#backlight {
+    color: #c0caf5;
+}
+
+#custom-nightlight {
+    color: #ff9e64;
+}
+
+#custom-nightlight.active {
+    color: #bb9af7;
+    background: rgba(36, 40, 59, 0.65);
+}
+
+#custom-caffeine {
+    color: #a9b1d6;
+}
+
+#custom-caffeine.activated {
+    color: #bb9af7;
+    background: rgba(36, 40, 59, 0.65);
+}
+
+#battery {
+    color: #c0caf5;
+}
+
+#battery.charging {
+    color: #bb9af7;
+}
+
+#battery.warning {
+    color: #e0af68;
+}
+
+#battery.critical:not(.charging) {
+    color: #ffffff;
+    background: #7a2e3f;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    to {
+        background: #7aa2f7;
+        color: #ffffff;
+    }
+}
+
+#clock {
+    color: #c0caf5;
+    background: rgba(36, 40, 59, 0.65);
+    border: 1px solid rgba(122, 162, 247, 0.35);
+    padding: 0 13px;
+    margin: 3px 3px;
+    min-width: 118px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#tray {
+    background: rgba(41, 46, 66, 0.55);
+    padding: 0 9px;
+    margin: 3px 2px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background: rgba(36, 40, 59, 0.65);
+    border-radius: 6px;
+}
+
+#custom-wallpaper {
+    color: #bb9af7;
+    background: rgba(36, 40, 59, 0.65);
+    padding: 0 10px;
+}
+
+#custom-theme {
+    color: #bb9af7;
+    background: rgba(36, 40, 59, 0.65);
+    padding: 0 10px;
+}
+
+#custom-power {
+    color: #bb9af7;
+    background: rgba(36, 40, 59, 0.65);
+    padding: 0 12px;
+}
+
+#custom-power:hover,
+#custom-launcher:hover,
+#custom-wallpaper:hover,
+#custom-theme:hover {
+    background: #3d59a1;
+    color: #ffffff;
+}
+
+#temperature:hover,
+#cpu:hover,
+#memory:hover,
+#pulseaudio:hover,
+#custom-microphone:hover,
+#backlight:hover,
+#custom-nightlight:hover,
+#custom-caffeine:hover,
+#battery:hover,
+#clock:hover,
+#mpris:hover {
+    background: rgba(47, 53, 73, 0.8);
+    color: #c0caf5;
+}

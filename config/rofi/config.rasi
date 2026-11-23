@@ -1,0 +1,16 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Tela-circle-green-dark";
+    display-drun: "󰣇 Apps";
+    display-run: " Run";
+    display-window: " Windows";
+    drun-display-format: "{name}";
+    font: "JetBrainsMono Nerd Font SemiBold 11";
+    sidebar-mode: false;
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+@theme "~/.config/rofi/theme.rasi"
