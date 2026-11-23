@@ -1,6 +1,6 @@
 # Niri Everforest Rice
 
-A Niri + Waybar rice with a centered clock, themed notifications, a wallpaper picker, a rofi power menu, and fourteen switchable color themes.
+A Niri + Waybar rice with a centered clock, themed notifications, a wallpaper picker, a rofi power menu, and thirteen switchable color themes.
 
 ![Preview](screenshots/preview.png)
 
@@ -8,7 +8,6 @@ A Niri + Waybar rice with a centered clock, themed notifications, a wallpaper pi
 
 - Niri configuration with rounded corners, blur, animations, and workspace binds
 - Waybar notch with numbered workspace chips, MPRIS, clock, system stats, microphone, nightlight, caffeine, battery, tray, wallpaper, theme, and power controls
-- Fourteen themes: `catppuccin-mocha`, `everforest-dark`, `glass-macos`, `gruvbox-dark`, `kanagawa`, `nord`, `obsidian-crimson`, `rose-pine`, `tokyo-night`, `dracula`, `onedark`, `solarized-dark`, `ayu-dark`, `github-dark`
 - Theme switcher that syncs Waybar, Niri, Kitty, Rofi, GTK, icons, Zsh prompt, Swaylock, and Mako
 - Wallpaper picker with thumbnails and next/random controls
 - Rofi power menu and themed notifications
@@ -63,7 +62,6 @@ cd niri-rice
 Choose a different theme or wallpaper:
 
 ```bash
-./install.sh --theme glass-macos
 ./install.sh --theme catppuccin-mocha --wallpaper grovebox.png
 ```
 
