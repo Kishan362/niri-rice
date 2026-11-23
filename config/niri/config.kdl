@@ -111,7 +111,7 @@ binds {
     Mod+Z hotkey-overlay-title="Open Browser: Zen" { spawn "zen-browser"; }
     Alt+V hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun" "-show-icons"; }
-    Alt+T hotkey-overlay-title="Switch Theme" { spawn "/home/lk/.config/themes/menu.sh"; }
+    Alt+T hotkey-overlay-title="Switch Theme" { spawn-sh "/home/lk/.config/themes/menu.sh"; }
     Alt+W hotkey-overlay-title="Switch Wallpaper" { spawn "/home/lk/.config/wallpaper/picker.sh"; }
     Alt+Shift+W hotkey-overlay-title="Next Wallpaper" { spawn "/home/lk/.config/wallpaper/wallpaper.sh" "--next"; }
     Alt+F hotkey-overlay-title="Toggle Focus Mode" { spawn-sh "pkill -USR1 -x waybar"; }
