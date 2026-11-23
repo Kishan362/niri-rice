@@ -7,7 +7,7 @@ A Niri + Waybar rice with a centered clock, themed notifications, a wallpaper pi
 ## Included
 
 - Niri configuration with rounded corners, blur, animations, and workspace binds
-- Waybar notch with workspaces, MPRIS, clock, system stats, microphone, nightlight, caffeine, battery, tray, wallpaper, theme, and power controls
+- Waybar notch with numbered workspace chips, MPRIS, clock, system stats, microphone, nightlight, caffeine, battery, tray, wallpaper, theme, and power controls
 - Nine themes: `catppuccin-mocha`, `everforest-dark`, `glass-macos`, `gruvbox-dark`, `kanagawa`, `nord`, `obsidian-crimson`, `rose-pine`, `tokyo-night`
 - Theme switcher that syncs Waybar, Niri, Kitty, Rofi, GTK, icons, Zsh prompt, Swaylock, and Mako
 - Wallpaper picker with thumbnails and next/random controls
@@ -55,7 +55,7 @@ The rice uses Catppuccin, Materia, Nordic, and Adwaita GTK themes, the Tela Circ
 ## Install
 
 ```bash
-git clone https://github.com/YOUR-USER/niri-rice.git
+git clone https://github.com/Kishan362/niri-rice.git
 cd niri-rice
 ./install.sh
 ```
@@ -88,6 +88,7 @@ Log out and back in if Niri does not reload automatically.
 | `Alt+W` | Wallpaper picker |
 | `Alt+Shift+W` | Next wallpaper |
 | `Super+Alt+L` | Lock screen |
+| `Alt+F` | Toggle Focus Mode (clock, tray, mic) |
 | `Print` | Screenshot |
 | `Mod+O` | Overview |
 | `Mod+Q` | Close window |

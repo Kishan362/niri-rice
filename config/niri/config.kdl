@@ -111,9 +111,10 @@ binds {
     Mod+Z hotkey-overlay-title="Open Browser: Zen" { spawn "zen-browser"; }
     Alt+V hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun" "-show-icons"; }
-    Alt+T hotkey-overlay-title="Switch Theme" { spawn-sh "~/.config/themes/menu.sh"; }
-    Alt+W hotkey-overlay-title="Switch Wallpaper" { spawn-sh "~/.config/wallpaper/picker.sh"; }
-    Alt+Shift+W hotkey-overlay-title="Next Wallpaper" { spawn-sh "~/.config/wallpaper/wallpaper.sh --next"; }
+    Alt+T hotkey-overlay-title="Switch Theme" { spawn "/home/lk/.config/themes/menu.sh"; }
+    Alt+W hotkey-overlay-title="Switch Wallpaper" { spawn "/home/lk/.config/wallpaper/picker.sh"; }
+    Alt+Shift+W hotkey-overlay-title="Next Wallpaper" { spawn "/home/lk/.config/wallpaper/wallpaper.sh" "--next"; }
+    Alt+F hotkey-overlay-title="Toggle Focus Mode" { spawn-sh "pkill -USR1 -x waybar"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
@@ -266,11 +267,11 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
-spawn-at-startup "sh" "-c" "exec waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css"
+spawn-at-startup "waybar" "-c" "/home/lk/.config/waybar/config.jsonc" "-s" "/home/lk/.config/waybar/style.css"
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-spawn-at-startup "sh" "-c" "if command -v awww-daemon >/dev/null 2>&1; then exec awww-daemon; elif command -v swww-daemon >/dev/null 2>&1; then exec swww-daemon; fi"
-spawn-at-startup "sh" "-c" "exec ~/.config/wallpaper/restore.sh"
+spawn-at-startup "awww-daemon"
+spawn-at-startup "/home/lk/.config/wallpaper/restore.sh"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 

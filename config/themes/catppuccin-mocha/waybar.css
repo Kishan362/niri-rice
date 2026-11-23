@@ -23,6 +23,39 @@ window#waybar > box {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
 }
 
+window#waybar.focus > box {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 18px;
+    box-shadow: none;
+}
+
+window#waybar.focus .modules-left {
+    background: rgba(30, 30, 46, 0.35);
+    border-left: 1px solid rgba(203, 166, 247, 0.38);
+    border-right: 1px solid rgba(203, 166, 247, 0.38);
+    border-bottom: 1px solid rgba(203, 166, 247, 0.45);
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: 2px 12px 4px 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
+}
+
+window#waybar.focus #clock,
+window#waybar.focus #tray,
+window#waybar.focus #custom-microphone {
+    background: transparent;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 0;
+}
+
+window#waybar.focus #tray,
+window#waybar.focus #custom-microphone {
+    border-left: 1px solid rgba(128, 128, 128, 0.35);
+}
+
 tooltip {
     background: #181825;
     color: #cdd6f4;
@@ -69,26 +102,42 @@ tooltip label {
 }
 
 #workspaces {
-    background: rgba(49, 50, 68, 0.55);
-    padding: 0 4px;
+    background: transparent;
+    padding: 0 2px;
 }
 
 #workspaces button {
     color: #585b70;
-    padding: 0 7px;
+    background: transparent;
+    padding: 0 9px;
     margin: 2px;
-    border-radius: 7px;
+    border-radius: 9px;
+    min-width: 20px;
 }
 
-#workspaces button.active {
-    color: #ffffff;
-    background: #7c5fbf;
-    box-shadow: 0 0 8px rgba(203, 166, 247, 0.45);
+#workspaces button.empty {
+    opacity: 0.35;
 }
 
 #workspaces button:hover {
     background: rgba(53, 44, 74, 0.8);
     color: #f5c2e7;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    background: #7c5fbf;
+    opacity: 1;
+}
+
+#workspaces button.focused {
+    box-shadow: inset 0 0 0 1px #7c5fbf;
+}
+
+#workspaces button.urgent {
+    color: #ffffff;
+    background: #d9534f;
+    opacity: 1;
 }
 
 #window {
