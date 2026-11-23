@@ -1,0 +1,6 @@
+# One Dark Zsh prompt colors
+PROMPT_COLOR="#61afef"
+PROMPT_COLOR_BG="#282c34"
+PROMPT_SECONDARY="#5c6370"
+PROMPT_ACCENT="#c678dd"
+PROMPT_ERROR="#f38ba8"
