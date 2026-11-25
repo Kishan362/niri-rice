@@ -97,6 +97,9 @@ reload_apps() {
     else
         nohup waybar -c "$WB/config.jsonc" -s "$WB/style.css" >/dev/null 2>&1 &
     fi
+    if [ -x "$HOME/.config/waybar/scripts/focus.sh" ]; then
+        "$HOME/.config/waybar/scripts/focus.sh" reset || true
+    fi
     pkill -USR1 -x kitty 2>/dev/null || true
     if command -v makoctl >/dev/null 2>&1 && pgrep -x mako >/dev/null 2>&1; then
         makoctl reload >/dev/null 2>&1 || true
@@ -135,12 +138,20 @@ apply_theme() {
 
     ln -sfn "$dir" "$THEMES/current"
 
+    if [ -f "$WB/scripts/waybar-style.py" ]; then
+        python3 "$WB/scripts/waybar-style.py" generate --quiet || true
+    fi
+
     if [ -f "$ROFI/config.rasi" ]; then
         sed -i -E "s|^([[:space:]]*icon-theme:[[:space:]]*)\"[^\"]*\"|\1\"$ICON_THEME\"|" "$ROFI/config.rasi"
     fi
 
     patch_calendar
-    sync_gtk
+    if [ -f "$THEMES/gtk-theme.sh" ]; then
+        bash "$THEMES/gtk-theme.sh" apply "$GTK_THEME" "$ICON_THEME" || true
+    else
+        sync_gtk
+    fi
     reload_apps
 
     printf 'Theme applied: %s (%s)\n' "$NAME" "$slug"

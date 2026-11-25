@@ -92,7 +92,7 @@ done
 if [ "${#missing[@]}" -gt 0 ]; then
     printf 'Missing required commands: %s\n' "${missing[*]}" >&2
     printf 'Official Arch/CachyOS repositories:\n' >&2
-    printf '  sudo pacman -S niri waybar kitty rofi mako swaylock python awww grim imagemagick brightnessctl pamixer playerctl cliphist wl-clipboard pavucontrol polkit-gnome gammastep ttf-jetbrains-mono-nerd noto-fonts tela-circle-icon-theme-all gnome-themes-extra materia-gtk-theme\n' >&2
+    printf '  sudo pacman -S niri waybar kitty rofi mako swaylock python python-gobject gtk4 libadwaita awww grim imagemagick brightnessctl pamixer playerctl cliphist wl-clipboard pavucontrol polkit-gnome gammastep ttf-jetbrains-mono-nerd noto-fonts tela-circle-icon-theme-all gnome-themes-extra materia-gtk-theme\n' >&2
     printf 'Optional AUR visuals (use paru or yay):\n' >&2
     printf '  paru -S catppuccin-gtk-theme-mocha bibata-cursor-theme-bin nordic-theme\n' >&2
     printf 'Optional official packages: btop nwg-look xsettingsd swaybg\n' >&2
@@ -103,6 +103,10 @@ fi
 for cmd in grim magick brightnessctl pamixer playerctl cliphist wl-copy wl-paste pavucontrol gammastep btop gsettings zen-browser; do
     command -v "$cmd" >/dev/null 2>&1 || printf 'Warning: optional command missing: %s\n' "$cmd" >&2
 done
+
+if ! python3 -c 'import gi; gi.require_version("Gtk", "4.0"); gi.require_version("Adw", "1")' >/dev/null 2>&1; then
+    printf 'Warning: GTK4/libadwaita Python bindings not found; Appearance window will fall back to Rofi\n' >&2
+fi
 
 if ! command -v awww >/dev/null 2>&1 && ! command -v swww >/dev/null 2>&1 && ! command -v swaybg >/dev/null 2>&1; then
     printf 'Warning: no wallpaper backend found (awww, swww, or swaybg)\n' >&2
@@ -166,7 +170,8 @@ for rel in \
     .config/gtk-3.0 \
     .config/gtk-4.0 \
     .config/xsettingsd \
-    .zshrc; do
+    .zshrc \
+    .local/share/applications/rice-settings.desktop; do
     backup_item "$HOME/$rel"
 done
 
@@ -183,12 +188,21 @@ copy_tree "$CONFIG_SRC/gtk-4.0" "$HOME/.config/gtk-4.0"
 copy_tree "$CONFIG_SRC/xsettingsd" "$HOME/.config/xsettingsd"
 run cp -a "$ZSHRC_SRC" "$HOME/.zshrc"
 
+settings_exec="$(printf '%s' "$HOME/.config/themes/settings.sh" | sed 's/[\\&|]/\\&/g')"
+settings_launcher="$HOME/.local/share/applications/rice-settings.desktop"
+if [ "$DRY_RUN" -eq 1 ]; then
+    printf '[dry-run] write %s\n' "$settings_launcher"
+else
+    mkdir -p "$(dirname "$settings_launcher")"
+    sed "s|@SETTINGS@|$settings_exec|" "$CONFIG_SRC/applications/rice-settings.desktop.in" > "$settings_launcher"
+fi
+
 run mkdir -p "$HOME/Pictures/Wallpapers"
 while IFS= read -r -d '' file; do
     run cp -n "$file" "$HOME/Pictures/Wallpapers/"
 done < <(find "$WALLPAPER_SRC" -maxdepth 1 -type f -print0)
 
-run chmod +x "$HOME/.config/themes/apply.sh" "$HOME/.config/themes/menu.sh" "$HOME/.config/rofi/power-menu.sh"
+run chmod +x "$HOME/.config/themes/apply.sh" "$HOME/.config/themes/menu.sh" "$HOME/.config/themes/settings.sh" "$HOME/.config/themes/gtk-theme.sh" "$HOME/.config/rofi/power-menu.sh" "$HOME/.config/waybar/scripts/waybar-style.py"
 run find "$HOME/.config/wallpaper" "$HOME/.config/waybar/scripts" -type f -name '*.sh' -exec chmod +x {} +
 
 run "$HOME/.config/themes/apply.sh" "$THEME"

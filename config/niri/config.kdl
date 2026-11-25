@@ -111,10 +111,10 @@ binds {
     Mod+Z hotkey-overlay-title="Open Browser: Zen" { spawn "zen-browser"; }
     Alt+V hotkey-overlay-title="Clipboard History" { spawn-sh "cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun" "-show-icons"; }
-    Alt+T hotkey-overlay-title="Switch Theme" { spawn-sh "/home/lk/.config/themes/menu.sh"; }
+    Alt+T hotkey-overlay-title="Appearance Settings" { spawn-sh "/home/lk/.config/themes/settings.sh"; }
     Alt+W hotkey-overlay-title="Switch Wallpaper" { spawn "/home/lk/.config/wallpaper/picker.sh"; }
     Alt+Shift+W hotkey-overlay-title="Next Wallpaper" { spawn "/home/lk/.config/wallpaper/wallpaper.sh" "--next"; }
-    Alt+F hotkey-overlay-title="Toggle Focus Mode" { spawn-sh "pkill -USR1 -x waybar"; }
+    Alt+F hotkey-overlay-title="Toggle Focus Mode" { spawn-sh "/home/lk/.config/waybar/scripts/focus.sh toggle"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
@@ -268,6 +268,7 @@ binds {
 }
 
 spawn-at-startup "waybar" "-c" "/home/lk/.config/waybar/config.jsonc" "-s" "/home/lk/.config/waybar/style.css"
+spawn-at-startup "/home/lk/.config/waybar/scripts/focus.sh" "reset"
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "awww-daemon"

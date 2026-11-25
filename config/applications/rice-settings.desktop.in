@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Appearance
+Comment=Configure themes, wallpaper, and shell appearance
+Exec=@SETTINGS@
+Icon=preferences-desktop-theme
+Terminal=false
+Categories=Settings;DesktopSettings;
+Keywords=theme;wallpaper;niri;rice;

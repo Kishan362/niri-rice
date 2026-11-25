@@ -222,7 +222,7 @@
       "return-type": "json",
       "interval": 5,
       "format": "{}",
-      "on-click": "~/.config/themes/menu.sh",
+      "on-click": "~/.config/themes/settings.sh",
       "on-click-right": "~/.config/themes/apply.sh --next",
       "tooltip": true
     },

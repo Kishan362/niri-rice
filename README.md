@@ -1,6 +1,6 @@
 # Niri Everforest Rice
 
-A Niri + Waybar rice with a centered clock, themed notifications, a wallpaper picker, a rofi power menu, and thirteen switchable color themes.
+A Niri + Waybar rice with a centered clock, themed notifications, an Appearance settings window, a wallpaper picker, a rofi power menu, and twenty-six switchable color themes.
 
 ![Preview](screenshots/preview.png)
 
@@ -8,6 +8,7 @@ A Niri + Waybar rice with a centered clock, themed notifications, a wallpaper pi
 
 - Niri configuration with rounded corners, blur, animations, and workspace binds
 - Waybar notch with numbered workspace chips, MPRIS, clock, system stats, microphone, nightlight, caffeine, battery, tray, wallpaper, theme, and power controls
+- Appearance window with rice theme cards, a GTK-only theme browser, wallpaper thumbnails, Waybar transparency/color/alignment controls, a focus-mode switch, and GTK/icon shortcuts
 - Theme switcher that syncs Waybar, Niri, Kitty, Rofi, GTK, icons, Zsh prompt, Swaylock, and Mako
 - Wallpaper picker with thumbnails and next/random controls
 - Rofi power menu and themed notifications
@@ -23,10 +24,10 @@ Tested on Arch Linux with Niri 26.04, Waybar 0.16, Kitty 0.51, Rofi 2.1, and Mak
 Both Arch Linux and CachyOS use `pacman`. Install the official packages first:
 
 ```bash
-sudo pacman -S niri waybar kitty rofi mako swaylock python awww grim imagemagick \
-  brightnessctl pamixer playerctl cliphist wl-clipboard pavucontrol polkit-gnome \
-  gammastep ttf-jetbrains-mono-nerd noto-fonts tela-circle-icon-theme-all \
-  gnome-themes-extra materia-gtk-theme
+sudo pacman -S niri waybar kitty rofi mako swaylock python python-gobject gtk4 \
+  libadwaita awww grim imagemagick brightnessctl pamixer playerctl cliphist \
+  wl-clipboard pavucontrol polkit-gnome gammastep ttf-jetbrains-mono-nerd \
+  noto-fonts tela-circle-icon-theme-all gnome-themes-extra materia-gtk-theme
 ```
 
 Optional official packages:
@@ -82,11 +83,11 @@ Log out and back in if Niri does not reload automatically.
 | `Alt+Return` | Open Kitty |
 | `Mod+D` | Open Rofi launcher |
 | `Mod+Z` | Open Zen Browser |
-| `Alt+T` | Theme picker |
+| `Alt+T` | Appearance settings |
 | `Alt+W` | Wallpaper picker |
 | `Alt+Shift+W` | Next wallpaper |
 | `Super+Alt+L` | Lock screen |
-| `Alt+F` | Toggle Focus Mode (clock, tray, mic) |
+| `Alt+F` | Toggle Focus Mode (workspace, tray, mic) |
 | `Print` | Screenshot |
 | `Mod+O` | Overview |
 | `Mod+Q` | Close window |
@@ -94,7 +95,17 @@ Log out and back in if Niri does not reload automatically.
 
 ## Themes
 
-Switch themes with `Alt+T`, the Waybar theme button, or:
+Open the Appearance window with `Alt+T`, the Waybar theme button, or the **Appearance** app launcher. It has five pages:
+
+- **Themes**: searchable full-rice cards, including thirteen Catppuccin Mocha accent variants; click a card to apply it.
+- **GTK**: browser for installed GTK themes, with an icon-theme selector. Applying here changes GTK/icons only.
+- **Wallpaper**: thumbnail grid with current wallpaper, random, and next controls.
+- **Waybar**: bar/pill transparency, background and text colors, corner radii, and module text alignment.
+- **System**: current GTK/icon/cursor/font values, focus-mode switch, and folder shortcuts.
+
+Waybar tweaks are saved in `~/.config/waybar/waybar-settings.json` and survive theme changes. **Reset appearance** returns the bar to the current theme defaults. Catppuccin accent cards apply the matching GTK theme and icon theme; the GTK page excludes those accents to avoid duplicate entries.
+
+If GTK4/libadwaita Python bindings are unavailable, `Alt+T` falls back to the Rofi theme picker. Themes can also be applied directly:
 
 ```bash
 ~/.config/themes/apply.sh <theme>
