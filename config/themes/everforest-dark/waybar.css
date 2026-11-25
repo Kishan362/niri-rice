@@ -50,15 +50,23 @@ window#waybar.focus #workspaces button {
     background: transparent;
     color: #ffffff;
     border: none;
-    padding: 0 8px;
+    padding: 0;
     margin: 0;
-    font-size: 16px;
-    font-weight: 700;
+    min-width: 0;
+    font-size: 0;
+    opacity: 0;
 }
 
-window#waybar.focus #workspaces button.focused {
+window#waybar.focus #workspaces button.focused,
+window#waybar.focus #workspaces button.active {
     color: #ffffff;
     background: transparent;
+    padding: 0 8px;
+    min-width: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 1;
+    box-shadow: none;
 }
 
 window#waybar.focus #tray {

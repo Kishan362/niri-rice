@@ -23,6 +23,72 @@ window#waybar > box {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
 }
 
+window#waybar.focus > box {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+window#waybar.focus .modules-center {
+    background: #000000;
+    border: none;
+    border-radius: 0 0 18px 18px;
+    padding: 2px 16px 4px 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+}
+
+window#waybar.focus #workspaces {
+    background: transparent;
+    margin: 0;
+    padding: 0 4px;
+    border-radius: 0;
+}
+
+window#waybar.focus #workspaces button {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    font-size: 0;
+    opacity: 0;
+}
+
+window#waybar.focus #workspaces button.focused,
+window#waybar.focus #workspaces button.active {
+    color: #ffffff;
+    background: transparent;
+    padding: 0 8px;
+    min-width: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 1;
+    box-shadow: none;
+}
+
+window#waybar.focus #tray {
+    background: transparent;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 0;
+}
+
+window#waybar.focus #custom-microphone {
+    background: transparent;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 0;
+    color: #ffffff;
+}
+
+window#waybar.focus #tray,
+window#waybar.focus #custom-microphone {
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
 tooltip {
     background: #0d0b10;
     color: #f3f1f5;
