@@ -19,6 +19,90 @@ usage() {
     printf '  -h, --help           Show this help\n'
 }
 
+os_release_field() {
+    local key="$1"
+    [ -r /etc/os-release ] || return 0
+    sed -n "s/^$key=//p" /etc/os-release | head -n 1 | tr -d '"'
+}
+
+print_arch_hint() {
+    printf 'Official Arch/CachyOS repositories:\n' >&2
+    printf '  sudo pacman -S niri waybar kitty rofi mako swaylock python python-gobject gtk4 libadwaita awww grim imagemagick brightnessctl pamixer playerctl cliphist wl-clipboard pavucontrol polkit-gnome gammastep ttf-jetbrains-mono-nerd noto-fonts tela-circle-icon-theme-all gnome-themes-extra materia-gtk-theme\n' >&2
+    printf 'Optional AUR visuals (use paru or yay):\n' >&2
+    printf '  paru -S catppuccin-gtk-theme-mocha bibata-cursor-theme-bin nordic-theme\n' >&2
+    printf 'Optional official packages: btop nwg-look xsettingsd swaybg\n' >&2
+    printf 'Optional AUR package: zen-browser-bin\n' >&2
+}
+
+print_gentoo_hint() {
+    cat >&2 <<'EOF'
+Gentoo packages (GURU is required for niri and several tools):
+
+  sudo emerge --ask app-eselect/eselect-repository dev-vcs/git
+  sudo eselect repository enable guru
+  sudo emerge --sync guru
+  printf '%s\n' '*/*::guru ~amd64' | sudo tee /etc/portage/package.accept_keywords/guru >/dev/null
+
+Replace ~amd64 with ~arm64 on arm64 systems.
+
+Recommended USE flags:
+
+  printf '%s\n' 'gui-apps/waybar niri mpris network pulseaudio tray upower' 'x11-misc/rofi wayland' 'media-fonts/nerdfonts jetbrainsmono' | sudo tee /etc/portage/package.use/niri-rice >/dev/null
+
+Main packages:
+
+  sudo emerge --ask gui-wm/niri gui-apps/waybar x11-terms/kitty x11-misc/rofi \
+    gui-apps/mako gui-apps/swaylock dev-python/pygobject gui-libs/gtk \
+    gui-libs/libadwaita gui-apps/awww gui-apps/grim media-gfx/imagemagick \
+    app-misc/brightnessctl media-sound/pamixer media-sound/playerctl \
+    app-misc/cliphist gui-apps/wl-clipboard media-sound/pavucontrol \
+    mate-extra/mate-polkit x11-misc/gammastep media-fonts/noto \
+    x11-themes/tela-icon-theme
+
+Optional themes and visuals:
+
+  sudo emerge --ask x11-themes/catppuccin-gtk x11-themes/bibata-xcursors \
+    x11-themes/materia-theme media-fonts/nerdfonts
+
+Optional tools:
+
+  sudo emerge --ask sys-process/btop app-misc/nwg-look x11-misc/xsettingsd gui-apps/swaybg
+
+OpenRC:
+
+  sudo emerge --ask sys-auth/elogind
+  sudo rc-update add elogind boot
+  Start niri with: dbus-run-session niri --session
+
+Tela Circle icons are not provided by x11-themes/tela-icon-theme. Install:
+https://github.com/vinceliuice/Tela-circle-icon-theme
+EOF
+}
+
+print_generic_hint() {
+    printf 'Install the missing commands with your distribution package manager, then rerun the installer.\n' >&2
+}
+
+print_package_hint() {
+    local distro_id="$1"
+    local distro_like="$2"
+    case "$distro_id" in
+        gentoo)
+            print_gentoo_hint
+            ;;
+        arch|archarm|cachyos|endeavouros|garuda|manjaro)
+            print_arch_hint
+            ;;
+        *)
+            if printf '%s' "$distro_like" | grep -qw arch; then
+                print_arch_hint
+            else
+                print_generic_hint
+            fi
+            ;;
+    esac
+}
+
 run() {
     if [ "$DRY_RUN" -eq 1 ]; then
         printf '[dry-run] %s\n' "$*"
@@ -41,6 +125,15 @@ copy_tree() {
     local dest="$2"
     run mkdir -p "$dest"
     run cp -a "$src/." "$dest/"
+}
+
+rewrite_install_paths() {
+    local file="$1"
+    local escaped_home
+    [ -f "$file" ] || return 0
+    grep -q '/home/lk' "$file" || return 0
+    escaped_home="$(printf '%s' "$HOME" | sed 's/[\\&|]/\\&/g')"
+    run sed -i "s|/home/lk|$escaped_home|g" "$file"
 }
 
 sync_swaylock() {
@@ -91,16 +184,11 @@ done
 
 if [ "${#missing[@]}" -gt 0 ]; then
     printf 'Missing required commands: %s\n' "${missing[*]}" >&2
-    printf 'Official Arch/CachyOS repositories:\n' >&2
-    printf '  sudo pacman -S niri waybar kitty rofi mako swaylock python python-gobject gtk4 libadwaita awww grim imagemagick brightnessctl pamixer playerctl cliphist wl-clipboard pavucontrol polkit-gnome gammastep ttf-jetbrains-mono-nerd noto-fonts tela-circle-icon-theme-all gnome-themes-extra materia-gtk-theme\n' >&2
-    printf 'Optional AUR visuals (use paru or yay):\n' >&2
-    printf '  paru -S catppuccin-gtk-theme-mocha bibata-cursor-theme-bin nordic-theme\n' >&2
-    printf 'Optional official packages: btop nwg-look xsettingsd swaybg\n' >&2
-    printf 'Optional AUR package: zen-browser-bin\n' >&2
+    print_package_hint "$(os_release_field ID)" "$(os_release_field ID_LIKE)"
     exit 1
 fi
 
-for cmd in grim magick brightnessctl pamixer playerctl cliphist wl-copy wl-paste pavucontrol gammastep btop gsettings zen-browser; do
+for cmd in grim magick brightnessctl pamixer playerctl cliphist wl-copy wl-paste pavucontrol gammastep btop gsettings zen-browser dbus-update-activation-environment; do
     command -v "$cmd" >/dev/null 2>&1 || printf 'Warning: optional command missing: %s\n' "$cmd" >&2
 done
 
@@ -112,8 +200,17 @@ if ! command -v awww >/dev/null 2>&1 && ! command -v swww >/dev/null 2>&1 && ! c
     printf 'Warning: no wallpaper backend found (awww, swww, or swaybg)\n' >&2
 fi
 
-[ -x /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ] || \
-    printf 'Warning: polkit-gnome authentication agent not found\n' >&2
+polkit_found=0
+for agent in \
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 \
+    /usr/libexec/polkit-gnome-authentication-agent-1 \
+    /usr/libexec/polkit-mate-authentication-agent-1; do
+    if [ -x "$agent" ]; then
+        polkit_found=1
+    fi
+done
+[ "$polkit_found" -eq 1 ] || \
+    printf 'Warning: polkit authentication agent not found\n' >&2
 
 if [ ! -f "$CONFIG_SRC/themes/$THEME/meta.conf" ]; then
     printf 'Unknown theme: %s\nAvailable themes:\n' "$THEME" >&2
@@ -186,6 +283,7 @@ copy_tree "$CONFIG_SRC/swaylock" "$HOME/.config/swaylock"
 copy_tree "$CONFIG_SRC/gtk-3.0" "$HOME/.config/gtk-3.0"
 copy_tree "$CONFIG_SRC/gtk-4.0" "$HOME/.config/gtk-4.0"
 copy_tree "$CONFIG_SRC/xsettingsd" "$HOME/.config/xsettingsd"
+rewrite_install_paths "$HOME/.config/niri/config.kdl"
 run cp -a "$ZSHRC_SRC" "$HOME/.zshrc"
 
 settings_exec="$(printf '%s' "$HOME/.config/themes/settings.sh" | sed 's/[\\&|]/\\&/g')"
@@ -202,7 +300,7 @@ while IFS= read -r -d '' file; do
     run cp -n "$file" "$HOME/Pictures/Wallpapers/"
 done < <(find "$WALLPAPER_SRC" -maxdepth 1 -type f -print0)
 
-run chmod +x "$HOME/.config/themes/apply.sh" "$HOME/.config/themes/menu.sh" "$HOME/.config/themes/settings.sh" "$HOME/.config/themes/gtk-theme.sh" "$HOME/.config/rofi/power-menu.sh" "$HOME/.config/waybar/scripts/waybar-style.py"
+run chmod +x "$HOME/.config/themes/apply.sh" "$HOME/.config/themes/menu.sh" "$HOME/.config/themes/settings.sh" "$HOME/.config/themes/gtk-theme.sh" "$HOME/.config/rofi/power-menu.sh" "$HOME/.config/niri/polkit-agent.sh" "$HOME/.config/niri/session-env.sh" "$HOME/.config/waybar/scripts/waybar-style.py"
 run find "$HOME/.config/wallpaper" "$HOME/.config/waybar/scripts" -type f -name '*.sh' -exec chmod +x {} +
 
 run "$HOME/.config/themes/apply.sh" "$THEME"

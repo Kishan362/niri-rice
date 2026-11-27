@@ -269,8 +269,8 @@ binds {
 
 spawn-at-startup "waybar" "-c" "/home/lk/.config/waybar/config.jsonc" "-s" "/home/lk/.config/waybar/style.css"
 spawn-at-startup "/home/lk/.config/waybar/scripts/focus.sh" "reset"
-spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-sh-at-startup "$HOME/.config/niri/session-env.sh"
+spawn-sh-at-startup "$HOME/.config/niri/polkit-agent.sh"
 spawn-at-startup "awww-daemon"
 spawn-at-startup "/home/lk/.config/wallpaper/restore.sh"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
